@@ -1,0 +1,114 @@
+.form-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-inline {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #535bf2;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 40px 0;
+}
+
+.dashboard-layout {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.stats-panel {
+  flex: 1;
+  max-width: 350px;
+}
+
+.list-section {
+  flex: 2;
+}
+
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.form-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .stats-panel {
+    max-width: 100%;
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.btn-confirm {
+  background-color: #28a745 !important;
+  font-size: 0.7rem;
+  padding: 5px 10px;
+}
+
+.btn-cancel {
+  background-color: #dc3545 !important;
+  font-size: 0.7rem;
+  padding: 5px 10px;
+}
+
+.card-actions button:hover {
+  opacity: 0.8;
+}
