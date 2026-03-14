@@ -55,5 +55,21 @@ module.exports = {
         } catch (error) {
             return res.status(500).json({ error: 'Erro ao atualizar agendamento.' });
         }
+    },
+
+    async delete(req, res) {
+        try {
+            const { id } = req.params;
+            const agendamento = await Agendamento.findByPk(id);
+
+            if (!agendamento) {
+                return res.status(404).json({ error: 'Agendamento não encontrado.' });
+            }
+
+            await agendamento.destroy();
+            return res.json({ message: 'Agendamento removido com sucesso.' });
+        } catch (error) {
+            return res.status(500).json({ error: 'Erro ao excluir agendamento.' });
+        }
     }
 };
