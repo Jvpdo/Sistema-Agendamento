@@ -32,6 +32,17 @@ async function startServer() {
         // Sincronização das Tabelas (Ordem importa por causa das relações)
         await Usuario.sync({ alter: true });
         await Agendamento.sync({ alter: true });
+        const userExists = await Usuario.findByPk(1);
+if (!userExists) {
+    await Usuario.create({
+        id: 1,
+        nome: "Administrador",
+        email: "admin@teste.com",
+        senha: "123",
+        tipo: "admin"
+    });
+    console.log("👤 Usuário de teste criado com sucesso!");
+}
         console.log("✅ Tabelas sincronizadas (Usuários e Agendamentos).");
 
         const PORT = process.env.PORT || 3001;

@@ -1,11 +1,14 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const Usuario = require('./Usuario'); // Importante para a relação
+const config = require('../config/database');
+const Usuario = require('./Usuario');
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
-    dialect: 'mysql',
-    logging: false
-});
+// Inicializa usando a config do Aiven (SSL incluído)
+const sequelize = new Sequelize(
+    config.development.database,
+    config.development.username,
+    config.development.password,
+    config.development
+);
 
 const Agendamento = sequelize.define('Agendamento', {
     data_hora: {
@@ -20,9 +23,14 @@ const Agendamento = sequelize.define('Agendamento', {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, { tableName: 'agendamentos' });
+}, { 
+    tableName: 'agendamentos',
+    underscored: true,
+    timestamps: true 
+});
 
-// Criando a relação: Um Agendamento pertence a um Usuário
+// Definindo a relação: Um Agendamento pertence a um Usuário
+// Usamos a foreignKey 'usuario_id' para bater com o que definimos no Controller
 Agendamento.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 
 module.exports = Agendamento;

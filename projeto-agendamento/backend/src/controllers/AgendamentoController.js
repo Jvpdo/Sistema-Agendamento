@@ -1,13 +1,16 @@
+// Importamos apenas os Models que já estão configurados (com o SSL que ajustamos)
 const Agendamento = require('../models/Agendamento');
 const Usuario = require('../models/Usuario');
 
 module.exports = {
-    // Criar um novo agendamento
+    /**
+     * Criar um novo agendamento
+     */
     async store(req, res) {
         try {
             const { usuario_id, data_hora, servico } = req.body;
 
-            // Validação simples: verificar se o usuário existe
+            // Verifica se o usuário existe antes de agendar
             const usuario = await Usuario.findByPk(usuario_id);
             if (!usuario) {
                 return res.status(400).json({ error: 'Usuário não encontrado.' });
@@ -21,23 +24,30 @@ module.exports = {
 
             return res.json(agendamento);
         } catch (error) {
-            console.error(error);
+            console.error("Erro na Store:", error);
             return res.status(500).json({ error: 'Erro ao criar agendamento.' });
         }
     },
 
-    // Listar todos os agendamentos (Para o Admin ver no Dashboard)
+    /**
+     * Listar todos os agendamentos (Dashboard)
+     */
     async index(req, res) {
         try {
             const agendamentos = await Agendamento.findAll({
+                // O include funciona porque a relação está definida nos Models
                 include: [{ model: Usuario, attributes: ['nome', 'email'] }]
             });
             return res.json(agendamentos);
         } catch (error) {
+            console.error("Erro na Index:", error);
             return res.status(500).json({ error: 'Erro ao listar agendamentos.' });
         }
     },
 
+    /**
+     * Atualizar status (Confirmar/Cancelar)
+     */
     async update(req, res) {
         try {
             const { id } = req.params;
@@ -57,6 +67,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Excluir agendamento
+     */
     async delete(req, res) {
         try {
             const { id } = req.params;
