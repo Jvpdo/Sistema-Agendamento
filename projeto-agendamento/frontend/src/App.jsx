@@ -24,6 +24,7 @@ function App() {
   const loadAgendamentos = useCallback(async () => {
     try {
       const response = await api.get('/agendamentos');
+      console.log("RESPOSTA DA API:", response.data);
       setAgendamentos(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       console.error(err);
