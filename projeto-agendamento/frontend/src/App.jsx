@@ -196,7 +196,7 @@ function App() {
 
                   <p>
                     <strong>👤 Cliente:</strong>
-                    {agenda.Usuario?.nome || 'Cliente Padrão'}
+                    {agenda.usuario_id === 1 ? 'Usuario Padrao' : 'Cliente'}
                   </p>
 
                   <p>
