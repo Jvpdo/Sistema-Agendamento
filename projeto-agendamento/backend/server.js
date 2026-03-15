@@ -11,9 +11,9 @@ const app = express();
 
 // 1. Middlewares
 app.use(cors({
-  origin: '*', // Permite qualquer origem para o teste do PI
+  origin: '*', // Permite acesso de qualquer lugar (Vercel, celular, etc)
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'] // ADICIONE ISSO AQUI
 }));
 app.use(express.json());
 
@@ -50,8 +50,8 @@ if (!userExists) {
         console.log("✅ Tabelas sincronizadas (Usuários e Agendamentos).");
 
         const PORT = process.env.PORT || 3001;
-        app.listen(PORT, () => {
-            console.log(`📡 Servidor rodando na porta ${PORT}`);
+        app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Servidor rodando na porta ${PORT}`);
         });
         
     } catch (error) {
