@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://https://ennuyante-coinstantaneous-rosemarie.ngrok-fr'
+    baseURL: 'https://ennuyante-coinstantaneous-rosemarie.ngrok-free.dev'
+    
 });
 
 export default api;
