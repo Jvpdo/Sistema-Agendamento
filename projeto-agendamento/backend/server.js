@@ -10,7 +10,11 @@ const Agendamento = require('./src/models/Agendamento');
 const app = express();
 
 // 1. Middlewares
-app.use(cors());
+app.use(cors({
+  origin: '*', // Permite qualquer origem para o teste do PI
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // 2. Rotas
